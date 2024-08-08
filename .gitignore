@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+#ConnectionUtil
+src/main/java/com.revature/utils/ConnectionUtil.java
