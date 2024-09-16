@@ -18,7 +18,23 @@ public class ReaderService {
             throw new IllegalArgumentException("Reader with id " +  id + " does not exist");
         }
         return rDAO.getReaderById(id);
+    }
 
+    public Reader insertReader(Reader reader){
+        if(reader.getFirst_name() == null || reader.getFirst_name().equals("")){
+            throw new IllegalArgumentException("Please Enter First Name");
+        }
+        if(reader.getLast_name() == null || reader.getLast_name().equals("")){
+            throw new IllegalArgumentException("Please Enter Last Name");
+        }
+        return rDAO.insertReader(reader);
+    }
+
+    public Reader deleteReader(int reader_id){
+        if(!rDAO.doesReaderExist(reader_id)){
+            throw new IllegalArgumentException("Reader with id " +  reader_id + " does not exist");
+        }
+        return rDAO.deleteReader(reader_id);
     }
 
 }

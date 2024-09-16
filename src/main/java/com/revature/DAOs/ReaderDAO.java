@@ -72,11 +72,33 @@ public class ReaderDAO implements ReaderDAOInterface{
 
     @Override
     public Reader insertReader(Reader read) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "INSERT INTO readers (first_name, last_name) VALUES (?,?)";
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Failed to insert new reader");
+        }
         return null;
     }
 
     @Override
-    public Reader deleteReader(Reader read) {
+    public Reader deleteReader(int reader_id) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "DELETE FROM books WHERE reader_id_fk = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, reader_id);
+            ps.executeUpdate();
+
+            String sql2 = "DELETE FROM readers WHERE reader_id = ?";
+            PreparedStatement ps2 = conn.prepareStatement(sql2);
+            ps2.setInt(1, reader_id);
+            ps2.executeUpdate();
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Could not delete reader");
+        }
         return null;
     }
 
@@ -96,5 +118,19 @@ public class ReaderDAO implements ReaderDAOInterface{
             System.out.println("Reader does not exist");
         }
         return readerExists;
+    }
+
+    @Override
+    public void updateBookCount(int reader_id, int value) {
+        try(Connection conn = ConnectionUtil.getConnection()){
+            String sql = "UPDATE readers SET book_count = book_count + ? WHERE reader_id =?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, value);
+            ps.setInt(2, reader_id);
+            ps.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Could not update book count");
+        }
     }
 }

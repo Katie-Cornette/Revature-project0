@@ -29,6 +29,11 @@ public class Launcher {
         app.get("/readers", rc.getReadersHandler);
         app.get("/books", bc.getBooksHandler);
         app.get("/readers/{id}", rc.getReaderByIdHandler);
+        app.get("/books/{id}", bc.getBooksByReaderIdHandler);
+        app.post("/books/{id}", bc.insertBookByReaderIdHandler);
+        app.post("/readers", rc.insertReaderHandler);
+        app.delete("/books/{id}", bc.deleteBookByReaderIdHandler);
+        app.delete("/readers/{id}", rc.deleteReaderHandler);
 
 
     }

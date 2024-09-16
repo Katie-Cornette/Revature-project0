@@ -39,3 +39,5 @@ build/
 
 #ConnectionUtil
 src/main/java/com/revature/utils/ConnectionUtil.java
+
+!src/main/java/com/revature/utils/

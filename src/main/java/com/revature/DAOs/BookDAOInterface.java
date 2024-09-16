@@ -11,9 +11,11 @@ public interface BookDAOInterface {
 
     ArrayList<Book> getBookByReaderId(int id);
 
-    Book insertBookByReaderId(int id);
+    Book insertBookByReaderId(int id, Book book);
 
-    Book deleteBookByReaderId(int id);
+    Book deleteBookByReaderId(int id, Book book);
+
+
 
 
 

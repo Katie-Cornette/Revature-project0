@@ -1,38 +1,45 @@
 package com.revature.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Book {
 
     private int book_id;
     private String book_name;
     private String book_author;
-    private double price;
-    private int reader_id_fk;
+    private Double book_price;
+
+
+    private Integer reader_id_fk;
+
 
     private Reader reader;
 
     public Book() {
     }
 
-    public Book(int book_id, String book_name, String book_author, double price) {
+    public Book(int book_id, String book_name, String book_author, Double book_price) {
         this.book_id = book_id;
         this.book_name = book_name;
         this.book_author = book_author;
-        this.price = price;
+        this.book_price = book_price;
     }
 
-    public Book(int book_id, String book_name, String book_author, double price, int reader_id_fk) {
+    public Book(int book_id, String book_name, String book_author, Double book_price, Integer reader_id_fk) {
         this.book_id = book_id;
         this.book_name = book_name;
         this.book_author = book_author;
-        this.price = price;
+        this.book_price = book_price;
         this.reader_id_fk = reader_id_fk;
     }
 
-    public Book(int book_id, String book_name, String book_author, double price, int reader_id_fk, Reader reader) {
+    public Book(int book_id, String book_name, String book_author, Double book_price, Integer reader_id_fk, Reader reader) {
         this.book_id = book_id;
         this.book_name = book_name;
         this.book_author = book_author;
-        this.price = price;
+        this.book_price = book_price;
         this.reader_id_fk = reader_id_fk;
         this.reader = reader;
     }
@@ -61,12 +68,12 @@ public class Book {
         this.book_author = book_author;
     }
 
-    public double getPrice() {
-        return price;
+    public Double getBook_price() {
+        return book_price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setBook_Price(Double price) {
+        this.book_price = price;
     }
 
     public Reader getReader() {
@@ -77,11 +84,11 @@ public class Book {
         this.reader = reader;
     }
 
-    public int getReader_id_fk() {
+    public Integer getReader_id_fk() {
         return reader_id_fk;
     }
 
-    public void setReader_id_fk(int reader_id_fk) {
+    public void setReader_id_fk(Integer reader_id_fk) {
         this.reader_id_fk = reader_id_fk;
     }
 
@@ -91,7 +98,7 @@ public class Book {
                 "book_id=" + book_id +
                 ", book_name='" + book_name + '\'' +
                 ", book_author='" + book_author + '\'' +
-                ", price=" + price +
+                ", price=" + book_price +
                 ", reader=" + reader +
                 ", reader_id_fk=" + reader_id_fk +
                 '}';

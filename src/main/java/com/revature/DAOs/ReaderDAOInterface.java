@@ -13,11 +13,11 @@ public interface ReaderDAOInterface {
 
     Reader insertReader(Reader read);
 
-    Reader deleteReader(Reader read);
+    Reader deleteReader(int reader_id);
 
     boolean doesReaderExist(int id);
 
-
+    void updateBookCount(int reader_id, int value);
 
 
 }

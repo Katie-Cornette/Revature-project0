@@ -30,5 +30,30 @@ public class ReaderController {
         }
     };
 
+    public Handler insertReaderHandler = ctx -> {
+        Reader newReader = ctx.bodyAsClass(Reader.class);
+        try{
+            rs.insertReader(newReader);
+            ctx.status(200);
+            ctx.json(newReader);
+        }catch(IllegalArgumentException e){
+            ctx.status(400);
+            ctx.result(e.getMessage());
+        }
+
+    };
+
+    public Handler deleteReaderHandler = ctx -> {
+        int reader_id = Integer.parseInt(ctx.pathParam("id"));
+        try{
+            rs.deleteReader(reader_id);
+            ctx.status(200);
+            ctx.json("Reader was deleted successfully");
+        }catch(IllegalArgumentException e){
+            ctx.status(400);
+            ctx.result(e.getMessage());
+        }
+    };
+
 }
 
